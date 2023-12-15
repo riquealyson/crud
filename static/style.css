@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: conic-gradient( #8AD6F0 , #4EC5D1, #02B8B8, #2897B1 , #30779F , #6582B8, #8AD6F0);
+
+}
+#anemic{
+    padding-left: 40%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+.formsContent {
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20x;
+}
+
+img {
+    border-radius: 10px; 
+    max-width: 100%; 
+}
+
+h2, h3 {
+    color: #000000;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label, l {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button,
+#insertButton,
+#deleteButton,
+#updateButton {
+    background-color: #4fa2d9;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover,
+#insertButton:hover,
+#deleteButton:hover,
+#updateButton:hover {
+    background-color: #276fa0;
+}
+
+#updateContainer
+{
+    display: none;
+    margin-top: 20px;
+}

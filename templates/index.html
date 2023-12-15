@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Amenic - To Watch List</title>
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
+        <script>
+            function updateMovie(idMovie) {
+                var updateForm = document.getElementById("updateForm");
+                updateForm.style.display = "block";
+
+                document.getElementById("updateMovieForm").onsubmit = function() {
+
+                    var newMovieTitle = document.getElementById("newMovieTitle").value;
+                    var newMovieGenre = document.getElementById("newMovieGenre").value;
+
+                    var validateTitle = newMovieTitle.trim() !== "";
+                    var validateGenre = newMovieGenre.trim() !== "";
+
+                    if (validateTitle && validateGenre) {
+                        document.getElementById("idMovieUpdate").value = idMovie;
+                        document.getElementById("newMovieTitle").value = newMovieTitle;
+                        document.getElementById("newMovieGenre").value = newMovieGenre;
+                        document.getElementById("updateForm").submit();
+                    } else {
+                        alert("Por favor, preencha todos os campos!");
+                    }
+                };
+            }
+        </script>
+    </head>
+    <body>
+
+        <img id="anemic" src="..\static\AmeniC.png" width="250" height="100">
+
+        <div class="formsContent">
+
+            <form action="/inputForms" method="post">
+                <label for="movieTitle">Título do Filme</label>
+                <input type="text" name="movieTitle" id="movieTitle" required>
+                
+                <label for="movieGenre">Gênero do Filme</label>
+                <input type="text" name="movieGenre" id="movieGenre" required>
+                <br>
+                <input type="submit" id="insertButton" value="Inserir">
+            </form>
+
+            <h3>Lista de Vendas</h3>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Gênero</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for filme in filmes %}
+                    <tr>
+                        <td> {{ filme[0] }} </td>
+                        <td> {{ filme[1] }} </td>
+                        <td> {{ filme[2] }} </td>
+                        <td>
+                            <button onclick="updateMovie(' {{ filme[0] }} ')">Editar</button>
+                            <form action="/deleteMovie" method="post">
+                                <input type="hidden" name="idMovie" value=" {{ filme[0] }} ">
+                                <button type="submit" id="deleteButton">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+
+            </table>
+
+            <div id="updateForm" style="display: none;">
+                <form id="updateMovieForm" action="/updateMovie" method="post">
+                    <input type="hidden" id="idMovieUpdate" name="idMovie">
+
+                    <label for="newMovieTitle">Novo Título do Filme</label>
+                    <input type="text" id="newMovieTitle" name="movieTitle" required>
+                    
+                    <label for="newMovieGenre">Novo Gênero do Filme</label>
+                    <input type="text" id="newMovieGenre" name="movieGenre" required>
+                    
+                    <!-- <button type="submit" id="updateButton">Atualizar</button> -->
+                    <button type="submit" id="updateButton">Atualizar</button>
+                    <button type="button" onclick="hideUpdateForm()">Cancelar</button>
+                </form>
+            </div>
+
+            <!-- <form id="updateForms" action="/updateMovie"  method="post" style="display:none;">
+                <input type="hidden" id="idMovieUpdate" name="idMovie">
+                <input type="hidden" id="newMovieTitle" name="movieTitle">
+                <input type="hidden" id="newMovieGenre" name="movieGenre">
+            </form> -->
+
+        </div>
+
+        <script>
+                function showUpdateForm(idMovie) {
+                    var updateForm = document.getElementById("updateForm");
+                    updateForm.style.display = "block";
+
+                    document.getElementById("idMovieUpdate").value = idMovie;
+                }
+
+                function hideUpdateForm() {
+                    var updateForm = document.getElementById("updateForm");
+                    updateForm.style.display = "none";
+                }
+        </script>
+    </body>
+</html>
